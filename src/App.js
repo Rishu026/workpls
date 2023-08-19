@@ -48,20 +48,20 @@ export default function App() {
           }}
           icon = {Icon}
           >
-          {activePark &&(
+          {activePark && activePark.map(
           <Popup>
           position={[
-            garden.geometry.coordinates[0],
-            garden.geometry.coordinates[1]
+            activePark.geometry.coordinates[0],
+            activePark.geometry.coordinates[1]
           ]}
           onClose ={()=>{
             setActivePark(null);
           }}
           <div>
             <h2>
-              "Name: "+garden.info.NAME
+              "Name: "+activePark.info.NAME
             </h2>
-            <p>"Description:" + garden.info.DESCRIPTION </p>
+            <p>"Description:" + activePark.info.DESCRIPTION </p>
           </div>
           </Popup>
           )} 
