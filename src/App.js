@@ -2,10 +2,10 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-//import * as parks from skateboard-parks.json;
+import teaparks from '.Data/teaparks.json'
 import { Icon, divIcon, point } from "leaflet";
 
-// create custom icon
+// create custom icon 
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
   //iconUrl: require(".public/logo192.png"),
@@ -21,25 +21,10 @@ const createClusterCustomIcon = function (cluster) {
   });
 };
 
-// markers
-const markers = [
-  {
-    geocode: [48.86, 2.3522],
-    popUp: "Hello, I am pop up 1"
-  },
-  {
-    geocode: [48.85, 2.3522],
-    popUp: "Hello, I am pop up 2"
-  },
-  {
-    geocode: [48.855, 2.34],
-    popUp: "Hello, I am pop up 3"
-  }
-];
 
 export default function App() {
   return (
-    <MapContainer center={[48.8566, 2.3522]} zoom={13}>
+    <MapContainer center={[26.244156 , 92.537842]} zoom={11}>
       {/* OPEN STREEN MAPS TILES */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -63,9 +48,27 @@ export default function App() {
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}
+
       >
+        {
+          teaparks.map(garden=>(
+            <Marker
+              key= {garden.park_id}
+              position = {[garden.geometry.coordinates[0],garden.geometry.coordinates[1]]}
+              icon={customIcon}
+              >
+              <Popup position={[garden.geometry.coordinates[0],garden.geometry.coordinates[1]]} >
+                <div>
+                  <h2>"Name: "+teaparks.Name</h2>
+                  <p>"Description" +teaparks.Description</p>
+                </div>
+              </Popup>
+
+            </Marker>
+          ))
+        }
         {/* Mapping through the markers */}
-        {markers.map((marker) => (
+        {/*markers.map((marker) => (
           <Marker position={marker.geocode} icon={customIcon}>
             <Popup>{marker.popUp}</Popup>
           </Marker>

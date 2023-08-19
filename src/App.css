@@ -18,8 +18,8 @@
 
 /* height of the container */
 .leaflet-container {
-  height: 90vh;
-  width: 90%;
+  height: 440px;
+  width: 800px;
   border-radius: 2rem;
 }
 
