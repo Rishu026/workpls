@@ -3,17 +3,18 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import parks from "../src/Data/skateboard-parks.json"
-import { Icon, divIcon, point } from "leaflet";
+import { Icon,divIcon,point } from "leaflet";
 //import { useState, useEffect } from 'react';
 import React from "react";
 
 
+
 // create custom icon
-//const customIcon = new Icon({
-  //iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+const customIcon = new Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
   //iconUrl: require(".public/logo192.png"),
-  //iconSize: [38, 38] // size of the icon
-//});
+  iconSize: [38, 38] // size of the icon
+});
 
 // custom cluster icon
 const createClusterCustomIcon = function (cluster) {
@@ -29,26 +30,28 @@ const createClusterCustomIcon = function (cluster) {
 export default function App() {
   const [activePark, setActivePark] = React.useState(null);
   return(  
-    <MapContainer center={[26.2006, 92.9376]} zoom={9}>
+    <MapContainer center={[26.2006, 92.9376]} zoom={8}>
       {/* OPEN STREEN MAPS TILES */}
       
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {parks.info.map(garden => (
+      <MarkerClusterGroup
+        chunkedLoading
+        iconCreateFunction={createClusterCustomIcon}>
+      {parks.info?.map(garden => (
         <Marker
           key={garden.properties.PARK_ID}
           position={[
-            garden.geometry.coordinates[0],
-            garden.geometry.coordinates[1]
+            garden.geometry.coordinates[0],garden.geometry.coordinates[1]
           ]}
           onClick={()=>{
             setActivePark(garden);
           }}
-          icon = {Icon}
+          icon = {customIcon}
           >
-          {activePark && activePark.map(
+          {activePark && (
           <Popup>
           position={[
             activePark.geometry.coordinates[0],
@@ -65,9 +68,11 @@ export default function App() {
           </div>
           </Popup>
           )} 
+           
         </Marker>
       ))}
-      
+      </MarkerClusterGroup>
+     
     </MapContainer>
   
   );
