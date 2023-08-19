@@ -2,15 +2,18 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import teaparks from '.Data/teaparks.json'
+import parks from "../src/Data/skateboard-parks.json"
 import { Icon, divIcon, point } from "leaflet";
+//import { useState, useEffect } from 'react';
+import React from "react";
 
-// create custom icon 
-const customIcon = new Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+
+// create custom icon
+//const customIcon = new Icon({
+  //iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
   //iconUrl: require(".public/logo192.png"),
-  iconSize: [38, 38] // size of the icon
-});
+  //iconSize: [38, 38] // size of the icon
+//});
 
 // custom cluster icon
 const createClusterCustomIcon = function (cluster) {
@@ -21,71 +24,51 @@ const createClusterCustomIcon = function (cluster) {
   });
 };
 
+// markers
 
 export default function App() {
-  return (
-    <MapContainer center={[26.244156 , 92.537842]} zoom={11}>
+  const [activePark, setActivePark] = React.useState(null);
+  return(  
+    <MapContainer center={[26.2006, 92.9376]} zoom={9}>
       {/* OPEN STREEN MAPS TILES */}
+      
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* WATERCOLOR CUSTOM TILES */}
-      {/* <TileLayer
-        attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg"
-      /> */}
-      {/* GOOGLE MAPS TILES */}
-      {/* <TileLayer
-        attribution="Google Maps"
-        // url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" // regular
-        // url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}" // satellite
-        url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}" // terrain
-        maxZoom={20}
-        subdomains={["mt0", "mt1", "mt2", "mt3"]}
-      /> */}
-
-      <MarkerClusterGroup
-        chunkedLoading
-        iconCreateFunction={createClusterCustomIcon}
-
-      >
-        {
-          teaparks.map(garden=>(
-            <Marker
-              key= {garden.park_id}
-              position = {[garden.geometry.coordinates[0],garden.geometry.coordinates[1]]}
-              icon={customIcon}
-              >
-              <Popup position={[garden.geometry.coordinates[0],garden.geometry.coordinates[1]]} >
-                <div>
-                  <h2>"Name: "+teaparks.Name</h2>
-                  <p>"Description" +teaparks.Description</p>
-                </div>
-              </Popup>
-
-            </Marker>
-          ))
-        }
-        {/* Mapping through the markers */}
-        {/*markers.map((marker) => (
-          <Marker position={marker.geocode} icon={customIcon}>
-            <Popup>{marker.popUp}</Popup>
-          </Marker>
-        ))}
-
-        {/* Hard coded markers */}
-        {/* <Marker position={[51.505, -0.09]} icon={customIcon}>
-          <Popup>This is popup 1</Popup>
+      {parks.info.map(garden => (
+        <Marker
+          key={garden.properties.PARK_ID}
+          position={[
+            garden.geometry.coordinates[0],
+            garden.geometry.coordinates[1]
+          ]}
+          onClick={()=>{
+            setActivePark(garden);
+          }}
+          icon = {Icon}
+          >
+          {activePark &&(
+          <Popup>
+          position={[
+            garden.geometry.coordinates[0],
+            garden.geometry.coordinates[1]
+          ]}
+          onClose ={()=>{
+            setActivePark(null);
+          }}
+          <div>
+            <h2>
+              "Name: "+garden.info.NAME
+            </h2>
+            <p>"Description:" + garden.info.DESCRIPTION </p>
+          </div>
+          </Popup>
+          )} 
         </Marker>
-        <Marker position={[51.504, -0.1]} icon={customIcon}>
-          <Popup>This is popup 2</Popup>
-        </Marker>
-        <Marker position={[51.5, -0.09]} icon={customIcon}>
-          <Popup>This is popup 3</Popup>
-        </Marker>
-       */}
-      </MarkerClusterGroup>
+      ))}
+      
     </MapContainer>
+  
   );
 }

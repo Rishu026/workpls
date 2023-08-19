@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#cccccc" />
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -15,11 +15,12 @@
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""
   />
-  <script
+  
+  <!--script
   src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"
   integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
-  crossorigin="anonymous">
-  </script>
+  crossorigin="">
+  </!--script-->
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -38,10 +39,19 @@
     -->
     <title>Assam weather</title>
   </head>
+  <script src ="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    
+  </script>
+
   <body>
+    <div id = title>
+      <h1>Government of India </h1>
+
+      <p>Map for showing weather information regarding Assam Tea Gardens</p>
+    </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <h1>Assam Mapping </h1>
-    <p>Map for showing weather information regarding Assam Tea Gardens</p>
+    <div id="root"></div>
+    
     
 
     <!--

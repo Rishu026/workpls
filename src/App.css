@@ -4,6 +4,13 @@
   padding: 0;
 }
 
+#title{
+  text-align: center;
+  text-decoration: solid;
+  text-decoration-color: blue;
+  text-size-adjust: 20;
+}
+
 #root {
   height: 100vh;
   display: flex;
@@ -18,8 +25,8 @@
 
 /* height of the container */
 .leaflet-container {
-  height: 440px;
-  width: 800px;
+  height: 90vh;
+  width: 90%;
   border-radius: 2rem;
 }
 
