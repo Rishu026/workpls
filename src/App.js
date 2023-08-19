@@ -2,7 +2,7 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import * as parks from skateboard-parks.json;
+//import * as parks from skateboard-parks.json;
 import { Icon, divIcon, point } from "leaflet";
 
 // create custom icon
@@ -24,8 +24,8 @@ const createClusterCustomIcon = function (cluster) {
 // markers
 const markers = [
   {
-    parks.info.geocode,
-    parks.
+    geocode: [48.86, 2.3522],
+    popUp: "Hello, I am pop up 1"
   },
   {
     geocode: [48.85, 2.3522],
@@ -66,7 +66,7 @@ export default function App() {
       >
         {/* Mapping through the markers */}
         {markers.map((marker) => (
-          <Marker position={.geocode} icon={customIcon}>
+          <Marker position={marker.geocode} icon={customIcon}>
             <Popup>{marker.popUp}</Popup>
           </Marker>
         ))}
