@@ -5,7 +5,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import parks from "../src/Data/skateboard-parks.json"
 import { Icon,divIcon,point } from "leaflet";
 //import { useState, useEffect } from 'react';
-import React from "react";
+//import React from "react";
 
 
 
@@ -28,7 +28,7 @@ const createClusterCustomIcon = function (cluster) {
 // markers
 
 export default function App() {
-  const [activePark, setActivePark] = React.useState(null);
+  //const [activePark, setActivePark] = React.useState(null);
   return(  
     <MapContainer center={[26.2006, 92.9376]} zoom={8}>
       {/* OPEN STREEN MAPS TILES */}
@@ -40,34 +40,30 @@ export default function App() {
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}>
-      {parks.info?.map(garden => (
+      {parks.info?.map((garden) => (
         <Marker
-          key={garden.properties.PARK_ID}
+          key={garden.info.properties.PARK_ID}
           position={[
             garden.geometry.coordinates[0],garden.geometry.coordinates[1]
           ]}
-          onClick={()=>{
-            setActivePark(garden);
-          }}
+                 
           icon = {customIcon}
           >
-          {activePark && (
           <Popup>
           position={[
-            activePark.geometry.coordinates[0],
-            activePark.geometry.coordinates[1]
+            garden.geometry.coordinates[0],
+            garden.geometry.coordinates[1]
           ]}
-          onClose ={()=>{
-            setActivePark(null);
-          }}
+          {garden.position.popUp}
+        
           <div>
             <h2>
-              "Name: "+activePark.info.NAME
+              "Name: "+ {garden.info.NAME}
             </h2>
-            <p>"Description:" + activePark.info.DESCRIPTION </p>
+            <p>"Description:" + {garden.info.DESCRIPTION} </p>
           </div>
           </Popup>
-          )} 
+           
            
         </Marker>
       ))}
