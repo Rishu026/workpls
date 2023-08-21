@@ -42,19 +42,19 @@ export default function App() {
         iconCreateFunction={createClusterCustomIcon}>
       {parks.info?.map((garden) => (
         <Marker
-          key={garden.info.properties.PARK_ID}
+          key={garden.INFO.PROPERTIES.PARK_ID}
           position={[
             garden.geometry.coordinates[0],garden.geometry.coordinates[1]
           ]}
                  
           icon = {customIcon}
           >
-          <Popup>
+          <Popup
           position={[
             garden.geometry.coordinates[0],
             garden.geometry.coordinates[1]
           ]}
-          {garden.position.popUp}
+          >
         
           <div>
             <h2>
