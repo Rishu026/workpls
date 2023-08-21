@@ -2,9 +2,10 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import parks from "../src/Data/skateboard-parks.json"
+//import parks from "../src/Data/skateboard-parks.json"
 import { Icon,divIcon,point } from "leaflet";
-//import { useState, useEffect } from 'react';
+
+import { useState, useEffect } from 'react';
 //import React from "react";
 
 
@@ -28,8 +29,48 @@ const createClusterCustomIcon = function (cluster) {
 // markers
 
 export default function App() {
-  //const [activePark, setActivePark] = React.useState(null);
+  const [activeParkS, setActiveParkS] = useState([]);
+
+  const [activePark,setActivePark] = useState("");
+
+  useEffect(()=>{
+    fetchGardens();
+  },[]);
+
+  const fetchGardens = async ()=>{
+    const response = await fetch("http://localhost:3000/gardens");
+    const data = await response.json();
+    setActiveParkS(data);
+  };
+
+  const postGardens = async (e)=>{
+    
+    const response = await fetch("http://localhost:3000/",{
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({activePark})
+    });
+    setActivePark("");
+    fetchGardens();
+    e.preventDefault();
+    
+  };
+
+
+ 
   return(  
+    <div class= "left">
+    <h2>Enter the data 
+      
+    </h2>
+      <form action= "" onSubmit={ postGardens }>
+        <input type = "time" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
+        <input type = "text" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
+        <input type = "rainfall" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
+      </form>
+    <div class= "">
     <MapContainer center={[26.2006, 92.9376]} zoom={8}>
       {/* OPEN STREEN MAPS TILES */}
       
@@ -40,27 +81,28 @@ export default function App() {
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}>
-      {parks.info?.map((garden) => (
+      {activeParkS?.map((garden) => (
         <Marker
-          key={garden.INFO.PROPERTIES.PARK_ID}
+          key={garden.garden_name}
           position={[
-            garden.geometry.coordinates[0],garden.geometry.coordinates[1]
-          ]}
-                 
+            garden.latitude,garden.longitude
+          ]}    
           icon = {customIcon}
           >
           <Popup
           position={[
-            garden.geometry.coordinates[0],
-            garden.geometry.coordinates[1]
+            garden.latitude,
+            garden.longitude
           ]}
           >
         
           <div>
-            <h2>
-              "Name: "+ {garden.info.NAME}
-            </h2>
-            <p>"Description:" + {garden.info.DESCRIPTION} </p>
+            <h3>
+              "Name: "+ {garden.garden_name}
+            </h3>
+            <p>"State" + {garden.state} </p>
+            <p>"Size of garden is: " + {garden.sizeofGarden}</p>
+
           </div>
           </Popup>
            
@@ -70,6 +112,7 @@ export default function App() {
       </MarkerClusterGroup>
      
     </MapContainer>
-  
+    </div>
+    </div>
   );
 }
