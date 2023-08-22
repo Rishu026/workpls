@@ -7,7 +7,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon,divIcon,point } from "leaflet";
 
 import { useState, useEffect } from 'react';
-//import React from "react";
+import React from "react";
 
 
 
@@ -31,22 +31,13 @@ const createClusterCustomIcon = function (cluster) {
 
 export default function App() {
   const [activeParkS, setActiveParkS] = useState([]);
-
-  
-
   useEffect(()=>{
-    fetchGardens();
+    fetch('https://get.geojs.io/v1/ip/geo.js')
+    .then(response => response.json())
+    .then(data => setActiveParkS(data));
   },[]);
-
-  const fetchGardens = async ()=>{
-    const response = await fetch("http://localhost:3000/gardens");
-    const data = await response.json();
-    setActiveParkS(data);
-  };
-
- 
-
- 
+  //console.log(parks.info.geometry.coordinates[0],parks.info.geometry.coordinates[1]);
+  
   return(  
     <div class= "left">
     <h2>Output of the data
@@ -54,7 +45,7 @@ export default function App() {
     </h2>
       
     <div class= "">
-    <MapContainer center={[26.2006, 92.9376]} zoom={8}>
+    <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '500px', width: '100%'}}>
       {/* OPEN STREEN MAPS TILES */}
       
       <TileLayer
@@ -64,27 +55,29 @@ export default function App() {
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}>
+        
       {activeParkS?.map((garden) => (
+        
         <Marker
-          key={garden.garden_name}
+        
+          //key={garden.ip}
           position={[
             garden.latitude,garden.longitude
           ]}    
-          icon = {customIcon}
+          //icon = {Icon}
           >
           <Popup
-          position={[
-            garden.latitude,
-            garden.longitude
-          ]}
+          //position={[
+            //garden.info.geometry.coordinates[0],garden.info.geometry.coordinates[1]
+          //]}
           >
         
           <div>
             <h3>
-              "Name: "+ {garden.garden_name}
+              "Name: "+ {garden.NAME}
             </h3>
-            <p>"State" + {garden.state} </p>
-            <p>"Size of garden is: " + {garden.sizeofGarden}</p>
+            <p>"State" + {garden.region} </p>
+            <p>"City is: " + {garden.city}</p>
 
           </div>
           </Popup>
