@@ -31,20 +31,44 @@ const createClusterCustomIcon = function (cluster) {
 
 export default function App() {
   const [activeParkS, setActiveParkS] = useState([]);
-  useEffect(()=>{
-    fetch('https://get.geojs.io/v1/ip/geo.js')
-    .then(response => response.json())
-    .then(data => setActiveParkS(data));
-  },[]);
-  //console.log(parks.info.geometry.coordinates[0],parks.info.geometry.coordinates[1]);
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://get.geojs.io/v1/ip/geo.js');
+  
+      if (response.ok) {
+        const text = await response.text();
+  
+        // Check if the response text is valid JSON before parsing
+        if (text.startsWith('{')) {
+          const data = JSON.parse(text);
+          console.log(data); // Check parsed data in console
+          setActiveParkS(data);
+        } else {
+          console.error('wrong response my g:', text);
+        }
+      } else {
+        console.error('API request failed with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+ 
   
   return(  
-    <div class= "left">
+    <div className = "left">
     <h2>Output of the data
       
     </h2>
       
-    <div class= "">
+    <div className = "">
     <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '500px', width: '100%'}}>
       {/* OPEN STREEN MAPS TILES */}
       
@@ -64,7 +88,7 @@ export default function App() {
           position={[
             garden.latitude,garden.longitude
           ]}    
-          //icon = {Icon}
+          icon = {customIcon}
           >
           <Popup
           //position={[
@@ -74,7 +98,7 @@ export default function App() {
         
           <div>
             <h3>
-              "Name: "+ {garden.NAME}
+              yes
             </h3>
             <p>"State" + {garden.region} </p>
             <p>"City is: " + {garden.city}</p>
