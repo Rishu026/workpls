@@ -2,6 +2,7 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+//import { ChakraProvider } from '@chakra-ui/react'
 //import parks from "../src/Data/skateboard-parks.json"
 import { Icon,divIcon,point } from "leaflet";
 
@@ -31,7 +32,7 @@ const createClusterCustomIcon = function (cluster) {
 export default function App() {
   const [activeParkS, setActiveParkS] = useState([]);
 
-  const [activePark,setActivePark] = useState("");
+  
 
   useEffect(()=>{
     fetchGardens();
@@ -43,33 +44,15 @@ export default function App() {
     setActiveParkS(data);
   };
 
-  const postGardens = async (e)=>{
-    
-    const response = await fetch("http://localhost:3000/",{
-      method: "POST",
-      headers: {
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({activePark})
-    });
-    setActivePark("");
-    fetchGardens();
-    e.preventDefault();
-    
-  };
-
+ 
 
  
   return(  
     <div class= "left">
-    <h2>Enter the data 
+    <h2>Output of the data
       
     </h2>
-      <form action= "" onSubmit={ postGardens }>
-        <input type = "time" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
-        <input type = "text" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
-        <input type = "rainfall" onChange={(e)=> setActivePark(e.target.value)} value ={activePark}></input>
-      </form>
+      
     <div class= "">
     <MapContainer center={[26.2006, 92.9376]} zoom={8}>
       {/* OPEN STREEN MAPS TILES */}
