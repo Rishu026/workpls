@@ -1,3 +1,5 @@
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,20 +23,22 @@
   font-family: sans-serif;
   color: #333;
   background-color: #ffffff ;
+  position: relative;
 }
 
 /* height of the container */
 .leaflet-container {
-  height: 80vh;
+  height: 100%;
   width: 100%;
-  border-radius: 2rem;
+  
+  position: relative;
 }
 
 .cluster-icon {
-  background-color: #333;
+  background-color: #bd7b7b;
   height: 2em;
   width: 2em;
-  color: #ce1111;
+  color: #ee5b5b;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,8 +46,10 @@
   font-size: 1.2rem;
   box-shadow: 0 0 0px 5px #fff;
 }
-h2{
-  text-align: left;
+.App {
+  background-color: #dda15e ;
+  height: 100vh;
+  width: 100%;
 }
 
 
