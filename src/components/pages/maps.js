@@ -31,9 +31,9 @@ const Maps = () => {
         if (response.ok) {
           
           const data = await response.json();
-          console.log(response)
-          const results = data.results; // Extract the array of users
-          setActiveParkS(results);
+          console.log(data.latitude)
+          
+          setActiveParkS(data);
         } else {
           console.error('API request failed with status:', response.status);
         }
@@ -58,14 +58,14 @@ const Maps = () => {
             {activeParkS?.map((garden, index) => (
               <Marker
                 key={index}
-                position={[parseFloat(garden.location.coordinates.latitude), parseFloat(garden.location.coordinates.longitude)]}
+                position={[parseFloat(garden.latitude), parseFloat(garden.longitude)]}
                 icon={customIcon}
               >
                 <Popup>
                   <div>
                     <h3>Yes</h3>
-                    <p>State: {garden.location.country}</p>
-                    <p>City: {garden.location.city}</p>
+                    <p>State: {garden.state}</p>
+                    <p>City: {garden.district}</p>
                   </div>
                 </Popup>
               </Marker>

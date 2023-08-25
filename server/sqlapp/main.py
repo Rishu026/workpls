@@ -27,29 +27,15 @@ session = db_session
 #app.mount("/static", StaticFiles(directory="static"), name="static")
 
 #CORS PART
-origins = ['https://localhost:3000']
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=['*'],
-    allow_headers=['*'],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Dependency
