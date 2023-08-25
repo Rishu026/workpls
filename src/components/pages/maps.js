@@ -31,7 +31,7 @@ const Maps = () => {
         if (response.ok) {
           
           const data = await response.json();
-          console.log(data.latitude)
+          console.log(data)
           
           setActiveParkS(data);
         } else {
@@ -55,9 +55,9 @@ const Maps = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon}>
-            {activeParkS?.map((garden, index) => (
+            {activeParkS?.map((garden) => (
               <Marker
-                key={index}
+                key={garden.id}
                 position={[parseFloat(garden.latitude), parseFloat(garden.longitude)]}
                 icon={customIcon}
               >
