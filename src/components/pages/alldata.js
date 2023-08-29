@@ -1,11 +1,20 @@
-import React from "react";
+import { useState } from "react";
 
-function Alld(){
-    return(
-        <h1>All the data </h1>
+import "./styles.css";
+import { SearchBar } from "./objects/list";
+import { SearchResultsList } from "./objects/searchresultlist";
 
-    )
+function Alld() {
+  const [results, setResults] = useState([]);
+
+  return (
+    <div className="Alld">
+      <div className="search-bar-container">
+        <SearchBar className="search-input" setResults={setResults} />
+        {results && results.length > 0 && <SearchResultsList results={results} />}
+      </div>
+    </div>
+  );
 }
 
-export default Alld
-    
+export default Alld;

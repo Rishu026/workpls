@@ -8,13 +8,13 @@ import React from "react";
 
 
 const customIcon = new Icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+    iconUrl: require("./plant.png"),
     iconSize: [38, 38] // size of the icon
   });
   
   const createClusterCustomIcon = function (cluster) {
     return new divIcon({
-      html: `<span className="cluster-icon">${cluster.getChildCount()}</span>`,
+      html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
       className: "custom-marker-cluster",
       iconSize: point(33, 33, true)
     });
@@ -49,7 +49,7 @@ const Maps = () => {
       
       <div className="Map">
        
-       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '600px', width: '100%' }}>
+       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '620px', width: '100%', }}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -70,6 +70,7 @@ const Maps = () => {
                 </Popup>
               </Marker>
             ))}
+             <a href="https://www.flaticon.com/free-icons/bubble-tea" title="bubble tea icons">Bubble tea icons created by Vector Stall - Flaticon</a>
           </MarkerClusterGroup>
         </MapContainer>
         
