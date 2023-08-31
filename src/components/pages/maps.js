@@ -31,7 +31,7 @@ const Maps = () => {
         if (response.ok) {
           
           const data = await response.json();
-          //console.log(data)
+          console.log(data)
           
           setActiveParkS(data);
         } else {
@@ -49,7 +49,7 @@ const Maps = () => {
       
       <div className="Map">
        
-       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '620px', width: '100%',display: 'flex',position:'relative',top:'' }}>
+       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '620px', width: '100%', }}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

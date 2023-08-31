@@ -1,8 +1,8 @@
 import "./App.css";
-import React from "react";
+
 import Navbar from './components/Navbar'
 import Maps from "./components/pages/maps"
-import {  Route, Routes } from "react-router-dom"
+import {Route, Routes } from "react-router-dom"
 import Alld from "./components/pages/alldata"
 
 function App() {
