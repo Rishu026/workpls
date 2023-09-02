@@ -63,9 +63,9 @@ const Maps = () => {
               >
                 <Popup>
                   <div>
-                    <h3>Yes</h3>
+                    <h3>{garden.name}</h3>
                     <p>State: {garden.state}</p>
-                    <p>City: {garden.district}</p>
+                    <p>Station name: {garden.district}</p>
                   </div>
                 </Popup>
               </Marker>

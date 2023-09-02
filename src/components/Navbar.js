@@ -14,10 +14,17 @@ const Navbar = () => {
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
         <span></span>
+        <span></span>
       </div>
       <ul className={menuOpen ? "open" : ""}>
         <li>
-          <NavLink to="/Alld">All Data</NavLink>
+          <NavLink to="/Alld">Search Data</NavLink>
+        </li>
+        <li>
+          <NavLink to ="/Metadata">Meta-data</NavLink>
+        </li>
+        <li>
+        <NavLink to ="/Login">LogIn</NavLink>
         </li>
       </ul>
     </nav>

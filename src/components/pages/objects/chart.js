@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+/*import React, { useState, useEffect } from 'react'
+import "./chart.css"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,11 +24,19 @@ ChartJS.register(
 );
 
 
-const LineChart = () => {
-  const [chart, setChart] = useState([])
-  
+const LineChart = ({result}) => {
+  //const [chart, setChart] = useState([])
+  const chartData = {
+    labels:result.map(entry => entry.name),
+    datasets:[{
+      label: 'Min Tempeerature (C)',
+      borderColor: 'blue',
+      backgroundColor:'rgba(0,0,255,0.2',
+      data: result.map(entry =>)
+    }]
+  }
 
-    const fetchChart = async () => {
+    /*const fetchChart = async () => {
         try {
           const response = await fetch('https://fakestoreapi.com/carts?userId=1');
     
@@ -35,7 +44,7 @@ const LineChart = () => {
           if (response.ok) {
             
             const data = await response.json();
-            //console.log(data)
+            console.log(data)
             
             setChart(data);
           } else {
@@ -47,18 +56,18 @@ const LineChart = () => {
       };
       useEffect(() => {
         fetchChart();
-      }, []);
+      }, []);*/
 
-  console.log(chart);
-  var data = {
-    labels: chart?.id?.map(x => x.id),
+  
+  /*var data = {
+    labels: chart?.map(x => x.id),
     datasets: [{
       label: `${chart?.id?.length} Id for user`,
       data: chart?.id?.map(x => x.products.quantity),
     }]
-  };
+  };*/
 
-  var options = {
+  /*var options = {
     maintainAspectRatio: false,
     scales: {
     },
@@ -76,4 +85,4 @@ const LineChart = () => {
   );
 }
 
-export default LineChart
+/*export default LineChart*/
