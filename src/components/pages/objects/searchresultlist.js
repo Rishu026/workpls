@@ -2,7 +2,7 @@ import React from "react";
 import "./searchresultlist.css";
 import { SearchResult } from "./searchlist";
 //import { Line } from "react-chartjs-2";
-import LineChart from "./chart";
+//import LineChart from "./chart";
 //import {Mapcomponent} from "./mapcomponent";
 
 

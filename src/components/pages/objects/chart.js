@@ -1,88 +1,36 @@
-/*import React, { useState, useEffect } from 'react'
+import React from "react";
+import { Chart as ChartJS } from "chart.js/auto";
+import { Line } from "react-chartjs-2";
 import "./chart.css"
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 
-import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 
 const LineChart = ({result}) => {
-  //const [chart, setChart] = useState([])
-  const chartData = {
-    labels:result.map(entry => entry.name),
-    datasets:[{
-      label: 'Min Tempeerature (C)',
-      borderColor: 'blue',
-      backgroundColor:'rgba(0,0,255,0.2',
-      data: result.map(entry =>)
-    }]
-  }
 
-    /*const fetchChart = async () => {
-        try {
-          const response = await fetch('https://fakestoreapi.com/carts?userId=1');
-    
-          
-          if (response.ok) {
-            
-            const data = await response.json();
-            console.log(data)
-            
-            setChart(data);
-          } else {
-            console.error('API request failed with status:', response.status);
-          }
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-      useEffect(() => {
-        fetchChart();
-      }, []);*/
-
-  
-  /*var data = {
-    labels: chart?.map(x => x.id),
+  var data = {
+    labels: result.map((x) => x.name),
     datasets: [{
-      label: `${chart?.id?.length} Id for user`,
-      data: chart?.id?.map(x => x.products.quantity),
+      label: `Users id`,
+      data: result.map(x => x.id),
+      backgroundColor: [
+        "rgba(75,192,192,1)",
+        "#ecf0f1",
+        "#50AF95",
+        "#f3ba2f",
+        "#2a71d0",
+      ],
+      borderColor: "black",
+      borderWidth: 2,
     }]
-  };*/
-
-  /*var options = {
-    maintainAspectRatio: false,
-    scales: {
-    },
-    legend: {
-      labels: {
-        fontSize: 25,
-      },
-    },
-  }
-
+  };
+  
   return (
-    <div className="chart-container">
-      <Line data={data} height={400} options={options} />
+    <div style ={{width:600, top:700,right:300}} >
+      <Line data={data} height={400} />
     </div>
   );
-}
+  
+};
 
-/*export default LineChart*/
+export default LineChart;
