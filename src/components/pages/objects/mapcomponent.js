@@ -4,6 +4,7 @@ import { Icon } from "leaflet";
 
 
 
+
 export const Mapcomponent = ({results}) => {
     const customIcon = new Icon({
         iconUrl: require("./plant.png"),
@@ -11,7 +12,8 @@ export const Mapcomponent = ({results}) => {
       });
 
   return (
-    <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '400px', width: '40%',left: '750px', top:'350px',margin:'left',display:'flex'}}>
+    
+    <MapContainer center={[26.2006, 92.9376]} zoom={6}  >
         <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -33,5 +35,6 @@ export const Mapcomponent = ({results}) => {
         ))}
 
     </MapContainer>
+    
   )
 }

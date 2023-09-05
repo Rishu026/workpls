@@ -1,11 +1,10 @@
 .chart-container {
-    width: 80%;
-    max-width: 800px;
-    margin-left: 1000px;
-    display: left;
-    padding: 20px;
-    background-color: #e5e5e5;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
+   
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 3;
+   background-color: #ffbf69;
+   margin-top: relative;
+   
   }

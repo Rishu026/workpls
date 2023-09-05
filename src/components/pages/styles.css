@@ -27,12 +27,7 @@
   }
   
   /* height of the container */
-  .leaflet-container {
-    height: 100%;
-    width: 100%;
-    
-    position: relative;
-  }
+
   
   
   .cluster-icon {
@@ -61,11 +56,12 @@
   .Alld {
     background-color:#fefae0;
     width: 100vw;
-    height: 200%;
+    height: 150%;
   }
   
   .search-bar-container {
-    padding-top: 10vh; /* Adjust the padding as needed */
+    z-index: 1;
+    padding-top: auto; /* Adjust the padding as needed */
     margin: 0 ; /* Center the container horizontally */
     display: flex;
     flex-direction: column;
@@ -82,3 +78,25 @@
     width: 100%; /* Occupy full width */
     box-sizing: border-box; /* Include padding and border in width */
   }
+  .map {
+
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 0 6px -3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    margin-top: 300px;
+    margin-left: 800px;
+    align-items: center;
+    justify-content: center;   
+    display: flexbox;
+  }
+  
+  .map .leaflet-container {
+  
+    height: 100%;
+    width: 100%;
+  }
+  

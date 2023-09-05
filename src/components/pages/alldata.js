@@ -3,7 +3,6 @@ import { SearchBar } from "./objects/parksearchbar";
 import { SearchResultsList } from "./objects/searchresultlist";
 import { Mapcomponent } from "./objects/mapcomponent";
 import "./styles.css"
-import { Line } from "react-chartjs-2";
 import LineChart from "./objects/chart";
 
 
@@ -18,7 +17,7 @@ function Alld() {
         {results && results.length > 0 && <SearchResultsList results={results} />}   
       </div>
 
-      <div>
+      <div className="map">
       <Mapcomponent results = {results} /> 
       </div>
       <div>

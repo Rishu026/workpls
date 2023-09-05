@@ -1,6 +1,7 @@
 .active{
     background-color: #faf0b6;
     color: #283618;
+    z-index: 5;
 }
 
 nav {
