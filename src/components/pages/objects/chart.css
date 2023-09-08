@@ -1,10 +1,10 @@
 .chart-container {
    
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 3;
-   background-color: #ffbf69;
-   margin-top: relative;
-   
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  background-color: #ffbf69;
+  margin-top: relative;
+  
+ }

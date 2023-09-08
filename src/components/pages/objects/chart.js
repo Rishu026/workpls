@@ -40,7 +40,6 @@ const LineChart = ({result}) => {
     },
   }
   
-  
   return (
     <div className="chart-container" >
       <Line data={data} height={400} options ={options} />

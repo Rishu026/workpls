@@ -68,6 +68,7 @@
     align-items: flex-start; /* Align items to the left side */
     width: 100%; /* Occupy full width */
     max-width: 600px; /* Set a maximum width */
+    float:left;
   }
   
   /* Optional: Style your search input */
@@ -91,7 +92,7 @@
     margin-left: 800px;
     align-items: center;
     justify-content: center;   
-    display: flexbox;
+    
   }
   
   .map .leaflet-container {
@@ -99,4 +100,3 @@
     height: 100%;
     width: 100%;
   }
-  

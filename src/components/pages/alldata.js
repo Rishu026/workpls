@@ -12,15 +12,16 @@ function Alld() {
 
   return (
     <div className="Alld">
-      <div className="search-bar-container">
+        <div className="search-bar-container">
         <SearchBar setResults={setResults}  /> 
         {results && results.length > 0 && <SearchResultsList results={results} />}   
-      </div>
+        </div>  
 
-      <div className="map">
-      <Mapcomponent results = {results} /> 
-      </div>
-      <div>
+        <div className="map">
+        <Mapcomponent results = {results} /> 
+        </div>
+        
+      <div className="chart-container">
       {results && results.length <=1 && <LineChart result ={results}/>}
       </div>
     </div>
