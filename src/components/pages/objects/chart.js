@@ -21,7 +21,7 @@ const LineChart = ({result}) => {
     },
   {
     label: `Max temp(Centigrade)`,
-    data: [30,35,29,15,16,18,10,12,18,25,26,20],
+    data: result.map((x)=>x.id),
     backgroundColor: 'rgba(255, 99, 132, 0.5)',
     yAxisID: 'y',
     borderColor: 'rgb(255, 99, 132)',

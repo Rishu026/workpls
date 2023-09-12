@@ -28,16 +28,17 @@
 
 /* height of the container */
 .leaflet-container {
-  height: 100rem;
-  width: 100rem;
+  height: 100%;
+  width: 100%;
   
   position: relative;
 }
 
 .App {
-  background-color: #dda15e ;
-  height: 100rem;
+ background-color:#fefae0 ;
+  height: 120%;
   width: 100%;
+  display:flexbox;
 }
 
 

@@ -49,7 +49,7 @@ const Maps = () => {
       
       <div className="Map">
        
-       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '620px', width: '100%', }}>
+       <MapContainer center={[26.2006, 92.9376]} zoom={8} style={{ height: '620px', width: '100%',display:"flex" }}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

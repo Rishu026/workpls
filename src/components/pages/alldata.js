@@ -22,7 +22,7 @@ function Alld() {
         </div>
         
       <div className="chart-container">
-      {results && results.length <=1 && <LineChart result ={results}/>}
+      {results && results.length ===1 && <LineChart result ={results}/>}
       </div>
     </div>
   );
