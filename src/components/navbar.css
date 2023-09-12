@@ -1,11 +1,12 @@
 .active{
     background-color: #faf0b6;
     color: #283618;
-    z-index: 5;
+    
 }
 
 nav {
     display: flex;
+    padding-right: 3%;
     
     justify-content: space-between;
     align-items: center;
@@ -14,27 +15,31 @@ nav {
     position: sticky;
     top: 0;
 }
-
+/*title size and stuff*/
 nav .title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 1rem;
     font-weight: bold;
     text-decoration: none;  
     color: #faf0b6;
+    padding-left: 3%;
+  
 }
 
 nav ul {
     display: flex;
     
 }
-
+/*list size and stuff*/
 nav ul li {
    list-style: none; 
    justify-content: left;
+   font-size: 1.1rem;
 }
 
 nav ul li a {
     display: block;
+
     text-decoration: none;
     color: #faf0b6;
     padding: 0.5rem;

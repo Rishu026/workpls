@@ -31,15 +31,10 @@
   height: 100%;
   width: 100%;
   
-  position: relative;
+  display: flex;
 }
 
-.App {
- background-color:#fefae0 ;
-  height: 120%;
-  width: 100%;
-  display:flexbox;
-}
+
 
 
 .button-container {

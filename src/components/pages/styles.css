@@ -30,7 +30,7 @@
     background-color: #333;
     height: 2em;
     width: 2em;
-    color: #fff;
+    color: #eee;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,37 +40,21 @@
   }
   
   
-  
-  .button-container {
-    display: flex;
-    justify-content: right;
-    margin: 20px;
-  }
-  
- 
-
-  .Alld {
-    background-color:#fefae0;
-    width: 100vw;
-    height: 100vh;
-    
-  }
-  
   .search-bar-container {
-    z-index: 1;
-    padding-top: auto; /* Adjust the padding as needed */
+    padding-left: 3%;
+    padding-top: 4%; /* Adjust the padding as needed */
     margin: 20 ; /* Center the container horizontally */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the left side */
-    width: 100%; /* Occupy full width */
-    max-width: 600px; /* Set a maximum width */
-    float:left;
+    width: 50%; /* Occupy full width */
+    max-width: 550px; /* Set a maximum width */
+    float: left;
   }
   
   /* Optional: Style your search input */
   .search-input {
-    padding: 10px;
+    padding: 5%;
     border: 1px solid #283618;
     border-radius: 5px;
     width: 100%; /* Occupy full width */
@@ -82,13 +66,12 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    position: relative;
-    box-shadow: 0 0 6px -3px rgba(0, 0, 0, 0.5);
-    margin-bottom: 30px;
-    margin-top: 300px;
-    margin-left: 800px;
-    align-items: center;
-    justify-content: center;   
+    display: flex;
+    box-shadow: 0 0 6px -3px rgba(32, 30, 30, 0.5);
+    margin-right: 3%; 
+    margin-top: 4%; 
+    float: right;  
+    width: 50%;
     
   }
   
@@ -96,4 +79,5 @@
   
     height: 100%;
     width: 100%;
+    display: flex;
   }
