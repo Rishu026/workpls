@@ -1,6 +1,5 @@
 /* eslint-disable default-case */
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -92,7 +91,7 @@ export default function Register(props) {
           <input
             type="text"
             placeholder="Name"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               onChangeForm("username", event);
             }}
@@ -100,7 +99,7 @@ export default function Register(props) {
           <input
             type="number"
             placeholder="Phone number"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               onChangeForm("phone_number", event);
             }}
@@ -108,7 +107,7 @@ export default function Register(props) {
           <input
             type="email"
             placeholder="Email"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               onChangeForm("email", event);
             }}
@@ -116,7 +115,7 @@ export default function Register(props) {
           <input
             type="password"
             placeholder="Password"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               onChangeForm("password", event);
             }}

@@ -7,7 +7,7 @@
 nav {
     display: flex;
     padding-right: 3%;
-    
+    z-index: 2;
     justify-content: space-between;
     align-items: center;
     background-color: #283618;
