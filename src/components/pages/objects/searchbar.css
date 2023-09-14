@@ -21,8 +21,9 @@
   margin-right: 0px;
   flex: 1;
   padding: 0 5px;
-  
-  outline: 3px solid #a3b18a; /* Add this outline property for focus */
+  border: none;
+  border-bottom: 2px solid #ccc; 
+  outline: none; /* Add this outline property for focus */
   border-radius: 10px;
 }
 
@@ -30,3 +31,8 @@
 #search-icon {
   color: royalblue;
 }
+
+.input-wrapper input:focus {
+  border-color: royalblue;
+}
+

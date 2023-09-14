@@ -41,8 +41,12 @@ function Loginpage() {
         </div>
       );
     } else {
-      //implement role based if checking"?
+      //implement role based if checking"? so that 
       return <Home />;
+      //if auth.role = yes then 
+      //  return <Authorized_user />
+      //if auth.role = no then
+      //   return <Normal_user /> or <Home/>
     }
   };
 

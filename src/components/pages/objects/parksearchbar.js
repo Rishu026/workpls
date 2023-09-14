@@ -6,15 +6,16 @@ import "./searchbar.css";
 
 export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
-  const [year, setYear] = useState("2020"); // State to store the selected year
+  const [year, setYear] = useState(""); // State to store the selected year
 
   const fetchData = (value) => {
     //const url = `http://localhost:7000/?year=${year}`;
     const url = 'https://jsonplaceholder.typicode.com/users';
-    fetch(url)
+    fetch(url)  
       .then((response) => response.json())
       .then((json) => {
         const results = json.filter((item) => {
+        
           return (
             value &&
             item &&
@@ -23,6 +24,7 @@ export const SearchBar = ({ setResults }) => {
           );
         });
         setResults(results);
+        console.log(results);
       });
   };
 
@@ -33,7 +35,7 @@ export const SearchBar = ({ setResults }) => {
 
   const handleChange = (value) => {
     setInput(value);
-    fetchData(); // Fetch data with the updated input
+    fetchData(value); // Fetch data with the updated input
   };
 
   return (
