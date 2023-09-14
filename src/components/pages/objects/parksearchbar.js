@@ -42,7 +42,6 @@ export const SearchBar = ({ setResults }) => {
        
       />
      
-    
       </div>
     
   );

@@ -29,7 +29,7 @@
 /* height of the container */
 .leaflet-container {
   height: 100%;
-  width: 100%;
+  width: 98%;
   
   display: flex;
 }
@@ -37,17 +37,3 @@
 
 
 
-.button-container {
-  display: flex;
-  justify-content: right;
-  margin: 20px;
-}
-
-.button-container button {
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  background-color: #3498db;
-  color: white;
-  cursor: pointer;
-}

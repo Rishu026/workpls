@@ -7,14 +7,14 @@ import { toast } from "react-toastify";
 
 export default function Login(props) {
   const [loginForm, setLoginform] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const onChangeForm = (label, event) => {
     switch (label) {
       case "email":
-        setLoginform({ ...loginForm, username: event.target.value });
+        setLoginform({ ...loginForm, email: event.target.value });
         break;
       case "password":
         setLoginform({ ...loginForm, password: event.target.value });
@@ -53,10 +53,10 @@ export default function Login(props) {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment className ="z-0">
       <div>
         <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">
-          Welcome to Opendata
+          Welcome to Historic Data
         </h1>
         <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer mx-auto">
           Please login to your account!

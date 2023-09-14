@@ -29,6 +29,7 @@ function Loginpage() {
       return <Register setPage= {setPage }  />;
     }
   };
+//implement role based if checking?
 
   const pages = () => {
     if (token == null) {
@@ -40,6 +41,7 @@ function Loginpage() {
         </div>
       );
     } else {
+      //implement role based if checking"?
       return <Home />;
     }
   };

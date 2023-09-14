@@ -12,7 +12,6 @@ export default function Register(props) {
   // Register Form
   const [formRegister, setFormRegister] = useState({
     name: "",
-   
     email: "",
     phone_number: "",
     password: "",
@@ -29,14 +28,18 @@ export default function Register(props) {
         break;
      
       case "email":
-        // email validation
+          // email validation
         const email_validation = /\S+@\S+\.\S+/;
-        if (email_validation.test(event.target.value)) {
+        if (email_validation.test(event.target.value) && event.target.value.endsWith(".com")  ) {
           setFormRegister({ ...formRegister, email: event.target.value });
         }
-        break;
+          break;
       case "phone_number":
-        setFormRegister({ ...formRegister, phone_number: event.target.value });
+        //const phone_valid =/\S+@\S+\.\S+/;
+        //if(phone_valid.test(event.target.length)===10){
+          setFormRegister({ ...formRegister, phone_number: event.target.value });
+        //}
+       
         break;
       case "password":
         setFormRegister({ ...formRegister, password: event.target.value });
@@ -73,15 +76,16 @@ export default function Register(props) {
         toast.error(error.response.data.detail);
       });
   };
+  
 
   return (
-    <React.Fragment>
+    <React.Fragment className ="z-0">
       <div>
         <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">
           Create An Account
         </h1>
         <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer mx-auto">
-          Welcome to Opendata!
+          Welcome to Historic data!
         </p>
       </div>
       <form onSubmit={onSubmitHandler}>
@@ -93,7 +97,7 @@ export default function Register(props) {
             placeholder="Name"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
-              onChangeForm("username", event);
+              onChangeForm("name", event);
             }}
           />
           <input

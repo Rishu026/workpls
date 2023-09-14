@@ -2,11 +2,31 @@ import React from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import "./chart.css"
+import { useEffect,useRef } from "react";
 
 
 
 
 const LineChart = ({result}) => {
+  const chartRef = useRef(null);
+  const chartInstance = useRef(null);
+  useEffect(() => {
+    if (chartRef.current && chartRef.current.chartInstance) {
+      chartInstance.current = chartRef.current.chartInstance;
+    }
+  }, []);
+  /*const download = () => {
+    if (chartInstance.current) {
+      const base64Image = chartInstance.current.toBase64Image("image/jpeg", 1.0);
+      const link = document.createElement("a");
+      link.href = base64Image;
+      link.download = "chart.jpg";
+      link.click();
+    }
+  };*/
+
+
+  
   const labels = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   var data = {
     //labels: result.map((x) => x.name),
@@ -34,16 +54,22 @@ const LineChart = ({result}) => {
     },
     legend: {
       labels: {
-        
         fontSize: 25,
       },
     },
   }
+ 
   
   return (
+    
+      
     <div className="chart-container" >
+
       <Line data={data} height={400} options ={options} />
+
     </div>
+    
+    
   );
   
 };

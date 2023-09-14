@@ -25,6 +25,8 @@ export default function Home() {
       });
   }, []);
 
+
+
   const onClickHandler = (event) => {
     event.preventDefault();
 
@@ -46,7 +48,7 @@ export default function Home() {
     // reload page
     setTimeout(() => {
       window.location.reload();
-    }, 1500);
+    }, 3000);
   };
 
   return (
@@ -59,17 +61,13 @@ export default function Home() {
         />
         <div className="text-center mt-2 text-3xl font-medium">{user.name}</div>
         <div className="text-center mt-2 font-light text-sm">
-          @{user.username}
+          @{user.name}
         </div>
         <div className="text-center font-normal text-lg">{user.email}</div>
-        <div className="px-6 text-center mt-2 font-light text-sm">
-          <p>{user.birth}</p>
-        </div>
+        
         <hr className="mt-8"></hr>
         <div className="flex p-4">
-          <div className="w-1/2 text-center">
-            <span className="font-bold">{user.sex}</span>
-          </div>
+          
           <div className="w-0 border border-gra-300"></div>
           <div className="w-1/2 text-center">
             <span className="font-bold">{user.phone_number}</span>
