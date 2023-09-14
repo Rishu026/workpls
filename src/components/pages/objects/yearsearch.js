@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 
-const Searchyear = ({ onSearch }) => {
+
+const Searchyear = ({ onYearChange }) => {
   const [year, setYear] = useState(""); // State to store the entered year
 
   const handleYearChange = (event) => {
-    setYear(event.target.value);
-  };
-
-  const handleSearch = () => {
-    // Call the onSearch callback function with the entered year
-    onSearch(year);
+    const yearValue = event.target.value;
+    setYear(yearValue);
+    onYearChange(yearValue); // Notify the parent component
   };
 
   return (
-    <div className="input-wrapper">
+    <div>
       <input
-        type="text"
-        placeholder="Enter a year"
-        value2 ={year}
+        type="number"
+        placeholder="Enter a year here"
+        value={year}
         onChange={handleYearChange}
       />
-      <button onClick={handleSearch}>search</button>
     </div>
   );
 };
