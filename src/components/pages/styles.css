@@ -44,18 +44,18 @@
   .search-bar-container {
     padding-left: 3%;
     padding-top: 4%; /* Adjust the padding as needed */
-    margin: 20 ; /* Center the container horizontally */
+    margin: auto ; /* Center the container horizontally */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the left side */
-    width: 50%; /* Occupy full width */
-    max-width: 550px; /* Set a maximum width */
+    width: 100%; /* Occupy full width */
+    max-width: 750px; /* Set a maximum width */
     float: left;
   }
   
   /* Optional: Style your search input */
   .search-input {
-    padding: 5%;
+    padding: 0%;
     border: 1px solid #283618;
     border-radius: 5px;
     width: 100%; /* Occupy full width */

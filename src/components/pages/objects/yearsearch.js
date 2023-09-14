@@ -14,7 +14,7 @@ const Searchyear = ({ onYearChange }) => {
     <div>
       <input
         type="number"
-        placeholder="Enter a year here"
+        placeholder="year ex(2020)"
         value={year}
         onChange={handleYearChange}
       />

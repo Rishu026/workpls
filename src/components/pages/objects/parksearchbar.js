@@ -6,9 +6,9 @@ import "./searchbar.css";
 
 export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
-  const [year, setYear] = useState(""); // State to store the selected year
+  const [year, setYear] = useState("2020"); // State to store the selected year
 
-  const fetchData = () => {
+  const fetchData = (value) => {
     //const url = `http://localhost:7000/?year=${year}`;
     const url = 'https://jsonplaceholder.typicode.com/users';
     fetch(url)
@@ -16,18 +16,18 @@ export const SearchBar = ({ setResults }) => {
       .then((json) => {
         const results = json.filter((item) => {
           return (
-            input &&
+            value &&
             item &&
             item.name &&
-            item.name.toLowerCase().includes(input)
+            item.name.toLowerCase().includes(value)
           );
         });
         setResults(results);
       });
   };
 
-  const handleYearChange = (selectedYear) => {
-    setYear(selectedYear); // Update the selected year state
+  const handleYearChange = (inputYear) => {
+    setYear(inputYear); // Update the selected year state
     fetchData(); // Fetch data with the selected year and input
   };
 
@@ -38,13 +38,22 @@ export const SearchBar = ({ setResults }) => {
 
   return (
     <div className="input-wrapper">
-      <FaSearch id="search-icon" />
-      <input
-        placeholder="Type park name (in lowercase)..."
-        value={input}
-        onChange={(e) => handleChange(e.target.value)}
+      <FaSearch id="search-icon" size = '23' />
+      <div>
+      
+      <input className="location-input"
+      type="text"
+      placeholder="Location name(lowercase)"
+      value={input}
+      onChange={(e) => handleChange(e.target.value)}
       />
-      <Searchyear onYearChange={handleYearChange} /> {/* Pass the callback function */}
-    </div>
+     </div>
+      
+      <div className="year-input">
+        <Searchyear onYearChange={handleYearChange} /> 
+      </div>
+     
+      
+      </div>
   );
 };
