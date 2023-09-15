@@ -1,1 +1,0 @@
-folder = 'C:\\Users\\Risha\\Documents\\Vs_code\\Practice\\workpls\\teagarden\\server\\sqlapp\\dataimport'
