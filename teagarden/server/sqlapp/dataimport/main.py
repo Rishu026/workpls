@@ -3,14 +3,24 @@ import sys
 from datetime import datetime
 import openpyxl
 from sqlalchemy.sql import text
-sys.path.append('C:\\Users\\Risha\\Documents\\Vs_code\\Practice\\workpls\\teagarden\\server\\sqlapp')
+#pathList = ["C:\\Users\\Risha\\Documents\\Vs_code\\Practice\\workpls\\teagarden\\server\\sqlapp"] 
+#sys.path.insert(0,pathList)
+#sys.path.append('C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp')
 
-from sqlapp.models import EntryType, RainfallData, Station, TemperatureAndHumidityData, Units
-from sqlapp.models import *
-from sqlapp.database import *
-from sqlapp.database import db_session, init_db, engine, conn
+import imp
+
+models = imp.load_source('models', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/models.py')
+from models import *
+database = imp.load_source('database', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/database.py')
+from database import *
+#from sqlapp.models import EntryType, RainfallData, Station, TemperatureAndHumidityData, Units
+#from sqlapp.models import *
+#from sqlapp.database import *
+#from sqlapp.database import db_session, init_db, engine, conn
 from excel_file_checker import read_workbook
-from sqlapp.config import folder
+config = imp.load_source('config', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/config.py')
+from config import *
+
 #from excel_file_checker import check_file
 
 def populate_units_table():
@@ -61,6 +71,6 @@ def reset_tables():
 
 
 if __name__ == '__main__':
-    reset_tables()
+    
     init_db()
     main()

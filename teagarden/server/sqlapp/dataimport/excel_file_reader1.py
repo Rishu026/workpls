@@ -1,7 +1,11 @@
 from datetime import datetime, time
 import openpyxl
-from sqlapp.models import *
-from sqlapp.database import *
+import imp
+models = imp.load_source('models', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/models.py')
+from models import *
+database = imp.load_source('database', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/database.py')
+from database import *
+
 
 #NEED TO ENSURE READING SHOULD BE 0 INSTEAD OF NOTHING
 

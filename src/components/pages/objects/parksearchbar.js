@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import Searchyear from "./yearsearch";
+import Searchyear1 from "./year1search.js";
+import Searchyear2 from "./year2search.js";
 
 import "./searchbar.css";
 
 export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
-  const [year, setYear] = useState(""); // State to store the selected year
-
+  const [year1, setYear1] = useState(""); // State to store the selected year
+  const[year2,setYear2] = useState("");
   const fetchData = (value) => {
-    //const url = `http://localhost:7000/?year=${year}`;
-    const url = 'https://jsonplaceholder.typicode.com/users';
+    const url = `http://localhost:7000/?startyear=${year1}&end_year=${year2}`;
+    //const url = 'https://jsonplaceholder.typicode.com/users';
+
     fetch(url)  
       .then((response) => response.json())
       .then((json) => {
@@ -28,8 +30,12 @@ export const SearchBar = ({ setResults }) => {
       });
   };
 
-  const handleYearChange = (inputYear) => {
-    setYear(inputYear); // Update the selected year state
+  const handleYearChange1 = (inputYear1) => {
+    setYear1(inputYear1); // Update the selected year state
+    fetchData(); // Fetch data with the selected year and input
+  };
+  const handleYearChange2 = (inputYear2) => {
+    setYear2(inputYear2); // Update the selected year state
     fetchData(); // Fetch data with the selected year and input
   };
 
@@ -52,10 +58,13 @@ export const SearchBar = ({ setResults }) => {
      </div>
       
       <div className="year-input">
-        <Searchyear onYearChange={handleYearChange} /> 
+        <Searchyear1 onYearChange={handleYearChange1} /> 
+        
       </div>
-     
-      
+      <div className="year-input">
+        <Searchyear2 onYearChange={handleYearChange2} />
+      </div>
+  
       </div>
   );
 };

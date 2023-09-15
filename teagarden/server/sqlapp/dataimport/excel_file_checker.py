@@ -1,10 +1,22 @@
 from datetime import datetime
 import openpyxl
+import imp
 from sqlalchemy.sql import text
-from sqlapp.dataimport.excel_file_reader1 import type_1_reader
-from sqlapp.dataimport.excel_file_reader2 import type_2_reader
-from sqlapp.models import *
-from sqlapp.database import db_session, init_db, engine, conn
+database = imp.load_source('database', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/database.py')
+from database import *
+models = imp.load_source('models', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/models.py')
+from models import *
+
+
+excel_file_reader1 = imp.load_source('excel_file_reader1', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/dataimport/excel_file_reader1.py')
+from excel_file_reader1 import *
+
+
+excel_file_reader2 = imp.load_source('excel_file_reader2', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/dataimport/excel_file_reader2.py')
+from excel_file_reader2 import *
+
+
+
 import os
 
 

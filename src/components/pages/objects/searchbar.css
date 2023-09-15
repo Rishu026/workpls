@@ -36,3 +36,6 @@
   border-color: royalblue;
 }
 
+.input-wrapper input:hover{
+  border-color: royalblue;
+}

@@ -1,1 +1,1 @@
-folder = 'C:\\Users\\Risha\\Documents\\Vs_code\\Practice\\workpls\\server\\sqlapp\\dataimport'
+folder = 'C:\\Users\\Risha\\Documents\\Vs_code\\Practice\\workpls\\teagarden\\server\\sqlapp\\dataimport'

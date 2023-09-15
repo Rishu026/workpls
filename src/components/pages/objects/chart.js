@@ -57,17 +57,22 @@ const LineChart = ({result}) => {
         fontSize: 25,
       },
     },
+    responsive:false,
+    chartArea: {
+        backgroundColor: 'rgba(251, 85, 85, 0.4)'
+    }
   }
+
  
   
   return (
     
       
-    <div className="chart-container" >
-
+    
+      <div>
       <Line data={data} height={400} options ={options} />
-
-    </div>
+      </div>
+    
     
     
   );

@@ -3,8 +3,10 @@ from sqlalchemy import DATETIME, DateTime
 
 import timestamp as timestamp
 from passlib.hash import bcrypt
-import database
-from database import base
+import imp
+database = imp.load_source('database', 'C:/Users/Risha/Documents/Vs_code/Practice/workpls/teagarden/server/sqlapp/database.py')
+from database import *
+
 from sqlalchemy import Column, String, ForeignKey, Integer, Float, Date, Time, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy import Enum
