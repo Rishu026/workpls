@@ -4,10 +4,7 @@ import React, { useState } from "react";
 const Searchyear1 = ({ onYearChange }) => {
   
   const [year, setYear] = useState(""); // State to store the entered year
-  if (setYear =="") {
-    console.log("Please select a year before fetching data.");
-    return; // Exit the function if no year is selected
-  }
+ 
   const handleYearChange = (event) => {
     const yearValue = event.target.value;
     setYear(yearValue);
@@ -18,7 +15,7 @@ const Searchyear1 = ({ onYearChange }) => {
     <div>
       <input
         type="number"
-        placeholder="year ex(2020)"
+        placeholder="start year"
         value={year}
         onChange={handleYearChange}
       />

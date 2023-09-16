@@ -39,3 +39,21 @@
 .input-wrapper input:hover{
   border-color: royalblue;
 }
+
+.input-wrapper button{
+  background: #2a56d7;
+  border-radius: 5px;
+  width:20%;
+  height:70%;
+  color:white;
+  font-weight:bold;
+  font-size:16px;
+}
+.input-wrapper button:hover{
+  background-color: rgb(53, 108, 196);
+  color:white;
+}
+.input-wrapper button:active{
+  background-color: rgb(4, 48, 118);
+  color:white;
+}

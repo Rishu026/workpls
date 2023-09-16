@@ -21,14 +21,14 @@ export const Mapcomponent = ({results}) => {
         {results.map((result)=>(
             <Marker 
                 key = {result.id}
-                position={[parseFloat(result.address.geo.lat), parseFloat(result.address.geo.lng)]}
+                position={[parseFloat(result.coordinates.latitude), parseFloat(result.coordinates.longitude)]}
                 icon = {customIcon}
             >
                  <Popup>
                   <div>
                     <h3>Yes</h3>
                     <p>username: {result.name}</p>
-                    <p>City: {result.id}</p>
+                    <p>City: {result.name}</p>
                   </div>
                 </Popup>
             </Marker>

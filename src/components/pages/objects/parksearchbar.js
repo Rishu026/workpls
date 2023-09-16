@@ -9,8 +9,9 @@ export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
   const [year1, setYear1] = useState(""); // State to store the selected year
   const[year2,setYear2] = useState("");
+  const [fetchOnButtonClick, setFetchOnButtonClick] = useState(false);
   const fetchData = (value) => {
-    const url = `http://localhost:7000/?startyear=${year1}&end_year=${year2}`;
+    const url = `http://localhost:7000/?start_year=${year1}&end_year=${year2}`;
     //const url = 'https://jsonplaceholder.typicode.com/users';
 
     fetch(url)  
@@ -32,16 +33,20 @@ export const SearchBar = ({ setResults }) => {
 
   const handleYearChange1 = (inputYear1) => {
     setYear1(inputYear1); // Update the selected year state
-    fetchData(); // Fetch data with the selected year and input
+    //fetchData(inputYear1); // Fetch data with the selected year and input
   };
   const handleYearChange2 = (inputYear2) => {
     setYear2(inputYear2); // Update the selected year state
-    fetchData(); // Fetch data with the selected year and input
+    //fetchData(inputYear2); // Fetch data with the selected year and input
   };
 
   const handleChange = (value) => {
     setInput(value);
     fetchData(value); // Fetch data with the updated input
+  };
+  const handleFetchButtonClick = () => {
+    setFetchOnButtonClick(true);
+    fetchData();
   };
 
   return (
@@ -64,7 +69,8 @@ export const SearchBar = ({ setResults }) => {
       <div className="year-input">
         <Searchyear2 onYearChange={handleYearChange2} />
       </div>
-  
+      <button className="button" onClick={handleFetchButtonClick}>Select years</button>
+      
       </div>
   );
 };

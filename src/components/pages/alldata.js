@@ -11,7 +11,7 @@ function Alld() {
   const [results, setResults] = useState([]);
 
   return (
-    <div className='bg-cover flex-row bg-white bg-origin-border '>
+    <div className='bg-cover flex-row bg-zinc-100 bg-origin-border '>
       
         <div className="search-bar-container ">
         <SearchBar setResults={setResults}  /> 

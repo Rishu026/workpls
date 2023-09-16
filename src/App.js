@@ -10,7 +10,7 @@ import Loginpage from "./components/pages/loginpage";
 
 function App() {
   return (
-    <div className="min-h-full min-w-full bg-white ">
+    <div className="min-h-full min-w-full bg-zinc-100 ">
       <Navbar />
      
       <Routes>

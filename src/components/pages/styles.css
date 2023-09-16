@@ -42,14 +42,14 @@
   
   
   .search-bar-container {
-    padding-left: 3%;
-    padding-top: 4%; /* Adjust the padding as needed */
+    padding-left: 2%;
+    padding-top: 1%; /* Adjust the padding as needed */
     margin: auto ; /* Center the container horizontally */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the left side */
     width: 100%; /* Occupy full width */
-    max-width: 750px; /* Set a maximum width */
+    max-width: 800px; /* Set a maximum width */
     float: left;
   }
   
@@ -64,7 +64,7 @@
   .map {
 
     height: 400px;
-    background-color: white;
+    background-color: creamywhite;
     border-radius: 10px;
     padding: 20px;
     display: flex;
