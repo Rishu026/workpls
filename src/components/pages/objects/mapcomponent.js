@@ -10,6 +10,7 @@ export const Mapcomponent = ({results}) => {
         iconUrl: require("./plant.png"),
         iconSize: [38, 38] // size of the icon
       });
+      const uniqueIds = new Set();
 
   return (
     
@@ -18,7 +19,11 @@ export const Mapcomponent = ({results}) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {results.map((result)=>(
+        
+        {results.map((result)=>{
+          if(!uniqueIds.has(result.id)){
+            uniqueIds.add(result.id);
+            return(
             <Marker 
                 key = {result.id}
                 position={[parseFloat(result.coordinates.latitude), parseFloat(result.coordinates.longitude)]}
@@ -32,7 +37,10 @@ export const Mapcomponent = ({results}) => {
                   </div>
                 </Popup>
             </Marker>
-        ))}
+            );
+          }
+          
+})}
 
     </MapContainer>
     
