@@ -18,10 +18,10 @@ const Navbar = () => {
       </div>
       <ul className={menuOpen ? "open" : ""}>
         <li>
-          <NavLink to="/Alld">Search Data</NavLink>
+          <NavLink to="/Alld"> Data</NavLink>
         </li>
         <li>
-          <NavLink to ="/Metadata">Meta-data</NavLink>
+          <NavLink to ="/Metadata">TBD</NavLink>
         </li>
         <li>
         <NavLink to ="/Login">LogIn</NavLink>
