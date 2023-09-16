@@ -15,6 +15,8 @@ export default function Register(props) {
     email: "",
     phone_number: "",
     password: "",
+    purpose:"",
+    confirmpwd:""//working on adding confirm password
   });
   //    default value datepicker
 
@@ -44,7 +46,21 @@ export default function Register(props) {
       case "password":
         setFormRegister({ ...formRegister, password: event.target.value });
         break;
-      
+        case "purpose":
+          // Limit the purpose to 300 characters
+          const inputText = event.target.value;
+          if (inputText.length <= 300) {
+            setFormRegister({ ...formRegister, purpose: inputText });
+          }
+          break;
+          case "confirmPassword":
+        const confirmPassword = event.target.value;
+        if (confirmPassword === formRegister.password) {
+          setFormRegister({ ...formRegister, confirmPassword });
+        } else {
+          // Handle password mismatch here (e.g., display an error message)
+        }
+
      
     }
   };
@@ -123,12 +139,30 @@ export default function Register(props) {
             onChange={(event) => {
               onChangeForm("password", event);
             }}
+            
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
+            onChange={(event) => {
+              onChangeForm("confirmPassword", event);
+            }}
+          />
+          <input 
+            type = 'text'
+            placeholder="Purpose (max 300 characters)"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
+            onChange={(event) => {
+              onChangeForm("purpose", event);
+            }}
+            maxLength={300}
           />
         </div>
         <div className="text-center mt-6">
           <button
             type="submit"
-            className="py-3 w-64 text-xl text-white bg-orange-400 rounded-2xl hover:bg-orange-300 active:bg-orange-500 outline-none"
+            className="py-4 w-64 text-xl text-white bg-orange-400 rounded-2xl hover:bg-orange-300 active:bg-orange-500 outline-none"
           >
             Create Account
           </button>
