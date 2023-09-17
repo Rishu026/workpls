@@ -1,0 +1,3 @@
+[submodule "teagarden"]
+	path = teagarden
+	url = https://github.com/jainaryan/teagarden.git

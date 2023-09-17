@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login(props){
-  axios.defaults.withCredentials = true;
+  //axios.defaults.withCredentials = true;
   const [email,setemail]= useState('')
   const [password,setpassword] = useState('')
   //const navigate = useNavigate()
