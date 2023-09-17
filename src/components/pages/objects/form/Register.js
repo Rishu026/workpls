@@ -1,103 +1,57 @@
-/* eslint-disable default-case */
-import React, { useState, useContext } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { UserContext } from "./Usercontext";
-import ErrorMessage from "./Errormessage";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
+//import { toast } from "react-toastify";
+import axios from 'axios';
 
 export default function Register(props) {
-  const [, setToken] = useContext(UserContext);
+  const navigate = useNavigate()
+    const [email_id,setemail_id]=useState("")
+    const[contact_number,setContact_number]=useState("")
+    const [name,setname]=useState("")
+    const [password,setpassword]=useState("")
+    const[Confirm,setConfirm]=useState("")
+    const[purpose,setPurpose]=useState("")
+   
 
-  // Register Form
-  const [formRegister, setFormRegister] = useState({
-    name: "",
-    email: "",
-    phone_number: "",
-    password: "",
-    purpose: "", //working on adding confirm password
-    confirmpwd: "",
-  });
-
-  // Error message state
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // convert format date to string
-
-  const onChangeForm = (label, event) => {
-    switch (label) {
-      case "name":
-        setFormRegister({ ...formRegister, name: event.target.value });
-        break;
-
-      case "email":
-        // email validation
-        const email_validation = /\S+@\S+\.\S+/;
-        if (email_validation.test(event.target.value) && event.target.value.endsWith(".com")) {
-          setFormRegister({ ...formRegister, email: event.target.value });
-        }
-        break;
-
-      case "phone_number":
-        setFormRegister({ ...formRegister, phone_number: event.target.value });
-        break;
-
-      case "password":
-        setFormRegister({ ...formRegister, password: event.target.value });
-        break;
-
-      case "purpose":
-        // Limit the purpose to 300 characters
-        const inputText = event.target.value;
-        if (inputText.length <= 300) {
-          setFormRegister({ ...formRegister, purpose: inputText });
-        }
-        break;
-
-      case "confirmPassword":
-        const confirmPassword = event.target.value;
-        if (confirmPassword === formRegister.password && formRegister.password.length >= 5) {
-          setFormRegister({ ...formRegister, confirmpwd: event.target.value });
-        } else {
-          // Handle password mismatch here (e.g., display an error message)
-        }
-        break;
-    }
-  };
-
-  // Submit handler
-  const onSubmitHandler = async (event) => {
-    try {
-      event.preventDefault();
-      const headers = {
-        'Content-Type': 'application/json'
-      };
-
-      // Post to register API
-      const response = await axios.post("http://localhost:7000/users/create", formRegister, { headers });
-
-      if (response.status === 200) {
-        // Assuming a successful response has a 'data' property
-        const data = response.data;
-        setToken(data.access_token);
-      } else {
-        setErrorMessage('An error occurred.');
+    const handleSubmit =async(e)=>{
+      e.preventDefault();
+      
+      if(name===""||email_id===""||password===""||contact_number===""){
+          alert("fill all the fields")
       }
-    } catch (error) {
-      if (error.response) {
-        setErrorMessage(error.response.data.detail);
-      } else if (error.request) {
-        setErrorMessage('Network error. Please try again later.');
-      } else {
-        setErrorMessage('An error occurred. Please try again later.');
+      if(password!==Confirm){
+          alert("passwords do not match")
       }
-    }
-  };
-
-  return (
-    <React.Fragment className="z-0">
-      <div>
+      else{
+      try    {
+      const header ={'Content-type':'application/json'}
+      const response = await axios.post("http://localhost:7000/users/create",{ 
+      email_id: email_id,
+      password: password,
+      name: name,
+      purpose: purpose,
+      contact_number: contact_number},{headers:header})
+      const data = await response.data
+      if(data){
+            alert("Account has been created , please proceed to login")
+            navigate("/Login", { replace: true });
+      }
+      else{
+          alert("User with this email already exists")
+      
+      }}catch(err){alert("User already exists")}
+  }
+  setemail_id('')
+  setname('')
+  setpassword('')
+  setConfirm('')   
+  setContact_number('')
+  setPurpose('')
+  }    
+  return(
+    <React.Fragment >
+    <div className='z-0'>
         <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">
           Create An Account
         </h1>
@@ -105,41 +59,47 @@ export default function Register(props) {
           Welcome to Historic data!
         </p>
       </div>
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <input
             type="text"
             placeholder="Name"
             required
+            maxLength={60}
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400 input"
             onChange={(event) => {
-              onChangeForm("name", event);
+              setname(event.target.value);
             }}
           />
+          
           <input
+          
             type="number"
+            maxLength={12}
             placeholder="Phone number"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
-              onChangeForm("phone_number", event);
+              setContact_number(event.target.value);
             }}
           />
           <input
             type="email"
             required
+            maxLength={50}
             placeholder="Email"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
-              onChangeForm("email", event);
+              setemail_id(event.target.value);
             }}
           />
           <input
             type="password"
             required
+            minLength={5}
             placeholder="Password"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
-              onChangeForm("password", event);
+              setpassword(event.target.value);
             }}
           />
           <input
@@ -147,19 +107,22 @@ export default function Register(props) {
             required
             placeholder="Confirm Password"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
+            
             onChange={(event) => {
-              onChangeForm("confirmPassword", event);
+              setConfirm(event.target.value);    
+        
             }}
           />
-          <input
+          <textarea
             type="text"
             required
+            maxLength={300}
             placeholder="Purpose (max 300 characters)"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
-              onChangeForm("purpose", event);
+              setPurpose(event.target.value);
             }}
-            maxLength={300}
+            
           />
         </div>
         <div className="text-center mt-6">
@@ -182,7 +145,6 @@ export default function Register(props) {
           </p>
         </div>
       </form>
-      <ErrorMessage message={errorMessage} />
-    </React.Fragment>
-  );
+      </React.Fragment >
+  )
 }

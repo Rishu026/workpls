@@ -13,7 +13,7 @@ export default function Home() {
 
     //  fetch data from get user api
     axios
-      .get("http://localhost:7000/users/login", {
+      .get("http://localhost:7000/users/details", {
         headers: { Authorization: token },
       })
       .then((response) => {
@@ -31,34 +31,18 @@ export default function Home() {
     event.preventDefault();
 
     // remove token form local storage
-    localStorage.removeItem("auth_token");
-    localStorage.removeItem("auth_token_type");
-
-    // notif
-    toast("See You !", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    localStorage.removeItem("access_token");
 
     // reload page
     setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 1000);
   };
 
   return (
     <div className="bg-gray-200 font-sans h-screen w-full flex flex-row justify-center items-center">
       <div className="card w-96 mx-auto bg-white shadow-xl hover:shadow">
-        <img
-          className="w-32 mx-auto rounded-full -mt-20 border-8 border-white"
-          alt="profile"
-          src={user.profile}
-        />
+        
         <div className="text-center mt-2 text-3xl font-medium">{user.name}</div>
         <div className="text-center mt-2 font-light text-sm">
           @{user.name}

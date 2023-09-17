@@ -1,60 +1,39 @@
-/*eslint-disable-next-line*/
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
+import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-
-export default function Login(props) {
-  const [loginForm, setLoginform] = useState({
-    email: "",
-    password: "",
-  });
-
-  const onChangeForm = (label, event) => {
-    switch (label) {
-      case "email":
-        setLoginform({ ...loginForm, email: event.target.value });
-        break;
-      case "password":
-        setLoginform({ ...loginForm, password: event.target.value });
-        break;
-    }
-  };
-
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    console.log(loginForm);
-    // call api login
-    await axios
-      .post("http://localhost:7000/users/login", loginForm)
-      .then((response) => {
-        console.log(response);
-        // Save token to local storage
-        localStorage.setItem("auth_token", response.data.result.access_token);
-        localStorage.setItem(
-          "auth_token_type",
-          response.data.result.token_type
-        );
-
-        // add successfully notif
-        toast.success(response.data.detail);
-        // reload page after success login
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      })
-      .catch((error) => {
-        // add error notif
+export default function Login(props){
+  axios.defaults.withCredentials = true;
+  const [email,setemail]= useState('')
+  const [password,setpassword] = useState('')
+  //const navigate = useNavigate()
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try{
+      const header = {'Content-type':'application/x-www-form-urlencoded'}
+      const response = await axios.post("http://localhost:7000/users/login",{username:email,password:password},{headers:header})
+      setemail('')
+      setpassword('')
+      const data = response.data
+      console.log(data)
+      if(data.access_token){
+        localStorage.setItem("access_token",data.access_token);
+        const token = data.access_token;
+        props.onLogin(token);
+        alert("Logged in successfully")
         
-        console.log(error);
-        toast.error(error.response.data.detail);
-      });
-  };
-
-  return (
-    <React.Fragment className ="z-0">
-      <div>
+      }
+      else{
+        alert("Invalid credentials")
+      }
+    }catch(err){
+      alert("An error occured while logging in")
+    }
+  }
+  return(
+    <React.Fragment>
+      <div className='z-0'>
         <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">
           Welcome to Historic Data
         </h1>
@@ -62,14 +41,14 @@ export default function Login(props) {
           Please login to your account!
         </p>
       </div>
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <input
             type="text"
             placeholder="Registered Email"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
             onChange={(event) => {
-              onChangeForm("email", event);
+              setemail(event.target.value)
             }}
           />
           <input
@@ -77,7 +56,7 @@ export default function Login(props) {
             placeholder="Password"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
             onChange={(event) => {
-              onChangeForm("password", event);
+              setpassword(event.target.value)
             }}
           />
         </div>
@@ -96,7 +75,6 @@ export default function Login(props) {
                 props.setPage=("register"); 
                 
               }}
-              
             >
               <span className="underline cursor-pointer">Register!</span>
             </Link> Please contribute.

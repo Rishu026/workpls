@@ -1,56 +1,60 @@
 import "./loginpage.css";
 import React, { useState, useEffect } from "react";
-//import Forgot from "./form/Forgot";
 import Login from "./objects/form/login";
 import Register from "./objects/form/Register";
 import Home from "./loginhome";
-
+import jwt_decode from "jwt-decode";
 
 function Loginpage() {
   const [page, setPage] = useState("register");
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(localStorage.getItem("access_token"));
+  const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
-    const auth = localStorage.getItem("auth_token");
+    // Update the token whenever it changes in localStorage
+    const auth = localStorage.getItem("access_token");
     setToken(auth);
-  }, [token]);
+
+  }, []);
+
 
   const choosePage = () => {
     if (page === "login") {
-      return <Login setPage = {setPage} />;
+      return <Login setPage={setPage} onLogin={handleLogin} />;
     }
-    
-      
-    
-    //if (page === "forgot") {
-      //return <Forgot setPage={setPage} />;
-   // }
     if (page === "register") {
-      return <Register setPage= {setPage }  />;
+      return <Register setPage={setPage} />;
     }
   };
-//implement role based if checking?
+  const handleLogin = (accessToken) => {
+    // Set the token in Loginpage's state
+    setToken(accessToken);
+    const decodedToken = jwt_decode(accessToken);
+    console.log(decodedToken.role)
+    setUserRole(decodedToken.role);
+  };
 
-  const pages = () => {
-    if (token == null) {
-      return (
-        <div className="min-h-screen bg-orange-300 flex justify-center items-center">
-          <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
-            {choosePage()}
-          </div>
-        </div>
-      );
-    } else {
-      //implement role based if checking"? so that 
-      return <Home />;
-      //if auth.role = yes then 
+  // Render Home immediately if token is not null
+  if (userRole==="no privileges") {
+    return <Home />;
+  }
+  else if(userRole==="low privelege"){
+    return 
+  }
+  else{
+    
+  }
+//if auth.role = yes then 
       //  return <Authorized_user />
       //if auth.role = no then
       //   return <Normal_user /> or <Home/>
-    }
-  };
-
-  return <React.Fragment>{pages()}</React.Fragment>;
+  return (
+    <div className="min-h-screen bg-orange-300 flex justify-center items-center">
+      <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+        {choosePage()}
+      </div>
+    </div>
+  );
 }
 
 export default Loginpage;
