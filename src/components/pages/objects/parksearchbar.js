@@ -42,7 +42,9 @@ export const SearchBar = ({ setResults }) => {
 
   const handleChange = (value) => {
     setInput(value);
+    if(year1&&year2!==''){
     fetchData(value); // Fetch data with the updated input
+    }
   };
   const handleFetchButtonClick = () => {
     setFetchOnButtonClick(true);

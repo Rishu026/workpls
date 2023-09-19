@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login(props){
@@ -46,7 +46,7 @@ export default function Login(props){
           <input
             type="text"
             placeholder="Registered Email"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               setemail(event.target.value)
             }}
@@ -54,7 +54,7 @@ export default function Login(props){
           <input
             type="password"
             placeholder="Password"
-            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-orange-400"
             onChange={(event) => {
               setpassword(event.target.value)
             }}

@@ -1,36 +1,43 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 export default function Home() {
   const [user, setUser] = useState({});
+ 
+  const handleDownload = () => {
+    fetch("http://localhost:7000/export-data-to-csv")
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "data_export.zip"; // Set the desired filename for the ZIP file
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   useEffect(() => {
-    // get token from local storage
-    const auth_token = localStorage.getItem("auth_token");
-    const auth_token_type = localStorage.getItem("auth_token_type");
-    const token = auth_token_type + " " + auth_token;
-
-    //  fetch data from get user api
     axios
-      .get("http://localhost:7000/users/details", {
-        headers: { Authorization: token },
-      })
+      .get("http://localhost:7000/users/details", {})
       .then((response) => {
-        console.log(response);
-        setUser(response.data.result);
+        const userData = response.data;
+        setUser(userData); // Set the user state with fetched data
       })
       .catch((error) => {
         console.log(error);
+        // Handle errors here, e.g., show a toast message
       });
-  }, []);
-
-
+  }, []); // Empty dependency array means this effect runs once on component mount
 
   const onClickHandler = (event) => {
     event.preventDefault();
 
-    // remove token form local storage
+    // remove token from local storage
     localStorage.removeItem("access_token");
 
     // reload page
@@ -40,21 +47,16 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gray-200 font-sans h-screen w-full flex flex-row justify-center items-center">
-      <div className="card w-96 mx-auto bg-white shadow-xl hover:shadow">
-        
+    <div className="bg-gray-300 font-sans h-screen w-full flex flex-row justify-center items-center">
+      <div className="card w-1/2 h-1/2 mx-auto bg-white shadow-xl hover:shadow-black">
         <div className="text-center mt-2 text-3xl font-medium">{user.name}</div>
-        <div className="text-center mt-2 font-light text-sm">
-          @{user.name}
-        </div>
-        <div className="text-center font-normal text-lg">{user.email}</div>
-        
+        <div className="text-center mt-2 font-normal text-sm">{user.email_id}</div>
+
         <hr className="mt-8"></hr>
         <div className="flex p-4">
-          
-          <div className="w-0 border border-gra-300"></div>
+          <div className="w-0 border border-gray-300"></div>
           <div className="w-1/2 text-center">
-            <span className="font-bold">{user.phone_number}</span>
+            <span className="font-bold">{user.contact_number}</span>
           </div>
         </div>
         <hr className="mt-3"></hr>
@@ -64,11 +66,21 @@ export default function Home() {
               onClick={(event) => {
                 onClickHandler(event);
               }}
-              className="py-3 w-64 text-xl text-black outline-none bg-gray-50 hover:bg-gray-100 active:bg-gray-200"
+              className="py-3 w-64 text-xl text-black outline-none bg-gray-100 hover:bg-gray-300 active:bg-gray-500"
             >
               Log out
             </button>
           </div>
+        </div>
+
+        {/* Add a button to trigger the CSV download */}
+        <div className="text-center mt-3">
+          <button
+            onClick={handleDownload}
+            className="py-3 w-64 text-xl text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700"
+          >
+            Download CSV
+          </button>
         </div>
       </div>
     </div>
