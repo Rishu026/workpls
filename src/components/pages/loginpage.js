@@ -23,7 +23,7 @@ function Loginpage() {
       return <Login setPage={setPage} onLogin={handleLogin} />;
     }
     if (page === "register") {
-      return <Register setPage={setPage} />;
+      return <Register setPage={setPage} onLogin={handleLogin} />;
     }
   };
   const handleLogin = (accessToken) => {

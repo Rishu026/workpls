@@ -34,8 +34,19 @@ export default function Register(props) {
       contact_number: contact_number},{headers:header})
       const data = await response.data
       if(data){
-            alert("Account has been created , please proceed to login")
-            navigate("/Login", { replace: true });
+        const header2 = {'Content-type':'application/x-www-form-urlencoded'}
+        const response2 = await axios.post("http://localhost:7000/users/login",{username:email_id,password:password},{headers:header2})
+          alert("Account has been created , please proceed to login")
+          const data2 = response2.data
+          if(data2.access_token){
+            localStorage.setItem("access_token",data2.access_token);
+            const token = data2.access_token;
+            props.onLogin(token);
+            alert("Logged in successfully")
+            
+          }
+          props.setPage("login");
+            
       }
       else{
           alert("User with this email already exists")
@@ -135,7 +146,7 @@ export default function Register(props) {
           <p className="mt-4 text-sm">
             Already have an account?{" "}
             <Link
-              to="/Login"
+              
               onClick={() => {
                 props.setPage("login");
               }}

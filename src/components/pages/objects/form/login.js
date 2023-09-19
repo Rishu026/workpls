@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login(props){
@@ -70,7 +70,7 @@ export default function Login(props){
           <p className="mt-4 text-sm">
             You don't have an account?{" "}
             <Link
-              to="/login"
+             
               onClick={() => {
                 props.setPage=("register"); 
                 

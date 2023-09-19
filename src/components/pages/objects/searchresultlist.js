@@ -2,23 +2,21 @@ import React, { useState } from "react";
 import "./searchresultlist.css";
 import { SearchResult } from "./searchlist";
 
-export const SearchResultsList = ({ results }) => {
-  const uniqueIds = new Set(); // Use a Set to store unique ids
-  console.log(results);
-  
+export const SearchResultsList = ({ results, onSelect }) => { // Receive onSelect prop
+  const uniqueIds = new Set();
+
   return (
     <div className="results-list">
       {results.map((result) => {
-        // Check if the id is unique; if not, skip rendering
         if (!uniqueIds.has(result.id)) {
-          uniqueIds.add(result.id); // Add the id to the Set to mark it as seen
+          uniqueIds.add(result.id);
           return (
-            <div key={result.id}>
+            <div key={result.id} onClick={() => onSelect(result.name)}> {/* Call onSelect when an option is clicked */}
               <SearchResult result={result.name} />
             </div>
           );
         }
-        return null; // Skip rendering if the id is not unique
+        return null;
       })}
     </div>
   );

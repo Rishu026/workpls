@@ -1,6 +1,5 @@
-//import { Mapcomponent } from "./mapcomponent";
-import "./searchresult.css";
 import React from "react";
+import "./searchresult.css";
 
 export const SearchResult = ({ result }) => {
   return (
@@ -9,7 +8,6 @@ export const SearchResult = ({ result }) => {
       onClick={() => (result)}
     >
       {result}
-      
     </div>
   );
 };
