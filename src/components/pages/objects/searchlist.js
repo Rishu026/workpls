@@ -5,7 +5,7 @@ export const SearchResult = ({ result }) => {
   return (
     <div
       className="search-result" 
-      onClick={() => (result)}
+      onClick={() => alert(result)}
     >
       {result}
     </div>
