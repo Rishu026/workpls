@@ -57,3 +57,7 @@
   background-color: rgb(4, 48, 118);
   color:white;
 }
+.input-wrapper input-cont{
+  width: 30%;
+  height: 80%;
+}
